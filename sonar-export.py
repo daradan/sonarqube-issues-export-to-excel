@@ -14,6 +14,7 @@ except ImportError as e:
 SONARQUBE_URL = os.getenv('SONAR_URL', 'http://localhost:9000/api/issues/search') #Sonar Instance URL
 PROJECT_KEY = os.getenv('SONAR_PROJECT_KEY', '') #Your Project Key
 TOKEN = os.getenv('SONAR_TOKEN', '') #Your Project Token
+BRANCH = os.getenv('SONAR_PROJECT_BRANCH', '') #Your Project Branch (optional)
 
 # Add basic input validation
 if not PROJECT_KEY or not TOKEN:
@@ -90,6 +91,7 @@ while current_start_date < end_date:
 
     params = { #Adjust as required
         'componentKeys': PROJECT_KEY,
+        'branch': BRANCH,
         'createdAfter': current_start_date.strftime('%Y-%m-%d'),
         'createdBefore': current_end_date.strftime('%Y-%m-%d'),
         'ps': page_size,
